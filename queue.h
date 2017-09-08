@@ -1,13 +1,15 @@
 typedef struct {
 	int *items;
 	int size;
+	int head;
 } Queue;
 
 Queue* initQueue() {
-	Queue *q = (Queue *)malloc(sizeof (Queue));
-	q->items = (int *)malloc(sizeof (int));
-	q->size = 0;
-	return q;
+	Queue *queue = (Queue *)malloc(sizeof (Queue));
+	queue->items = (int *)malloc(sizeof (int));
+	queue->size = 0;
+	queue->head = 0;
+	return queue;
 }
 
 int enqueue(Queue *queue, int item) {
@@ -19,14 +21,7 @@ int enqueue(Queue *queue, int item) {
 
 int dequeue(Queue *queue) {
 	queue->size--;
-	int item = queue->items[0];
-	int *newItems = (int *)malloc(queue->size * sizeof(int));
-	for (int i = 0; i < queue->size; i++) {
-		newItems[i] = queue->items[i + 1];
-	}
-	free(queue->items);
-	queue->items = newItems;
-	return item;
+	return queue->items[queue->head++];
 }
 
 int peek(Queue *queue) {

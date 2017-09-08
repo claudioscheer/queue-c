@@ -4,7 +4,7 @@
 
 #include "queue.h"
 
-const int items_count = 10;
+const int items_count = 3;
 const char message[46] = "Proccessing item %i from queue %i. Time: %i.\n";
 
 int randomDelay() {
@@ -22,6 +22,11 @@ void delay(int milliseconds) {
 void printAndDelay(int milliseconds, int queue, int *item) {
 	printf(message, *item, queue, milliseconds);
 	delay(milliseconds);
+}
+
+void freeQueue(Queue *queue) {
+	free(queue->items);
+	free(queue);
 }
 
 int main() {
@@ -49,6 +54,12 @@ int main() {
 	}
 
 	printf("All task proccessed.\n");
+	
+	freeQueue(queue1);
+	freeQueue(queue2);
+	freeQueue(queue3);
+	freeQueue(queue4);
+	freeQueue(queue5);
 
 	return 0;
 }
