@@ -4,7 +4,7 @@
 
 #include "queue.h"
 
-const int items_count = 3;
+const int items_count = 100;
 const char message[46] = "Proccessing item %i from queue %i. Time: %i.\n";
 
 int randomDelay() {
